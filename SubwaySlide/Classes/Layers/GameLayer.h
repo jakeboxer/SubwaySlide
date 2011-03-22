@@ -4,8 +4,11 @@
 
 @interface GameLayer : CCLayer {
 @private
+  BOOL _canChangeSubwayVelocity;
   Player* _player;
   float _playerRotationVelocity;
+  float _subwayVelocity;
+  CCLabelTTF* _subwayVelocityLabel;
 }
 
 + (CCScene*)scene;
