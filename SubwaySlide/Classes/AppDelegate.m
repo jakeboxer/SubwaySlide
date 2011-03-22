@@ -1,4 +1,3 @@
-#import "cocos2d.h"
 #import "AppDelegate.h"
 #import "GameConfig.h"
 #import "GameLayer.h"
