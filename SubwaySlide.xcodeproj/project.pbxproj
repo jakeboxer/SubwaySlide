@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		23335ED41339682E00450E90 /* bg_subway-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 23335ED21339682E00450E90 /* bg_subway-hd.png */; };
+		23335ED51339682E00450E90 /* bg_subway.png in Resources */ = {isa = PBXBuildFile; fileRef = 23335ED31339682E00450E90 /* bg_subway.png */; };
 		23B4512913381ED60096FD8D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23B4512813381ED60096FD8D /* QuartzCore.framework */; };
 		23B4512B13381ED60096FD8D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23B4512A13381ED60096FD8D /* OpenGLES.framework */; };
 		23B4512D13381ED60096FD8D /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23B4512C13381ED60096FD8D /* OpenAL.framework */; };
@@ -113,7 +115,6 @@
 		23B4528113381ED80096FD8D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B4528013381ED80096FD8D /* AppDelegate.m */; };
 		23B4528413381ED80096FD8D /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B4528313381ED80096FD8D /* RootViewController.m */; };
 		23B452931338260B0096FD8D /* GameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B452921338260B0096FD8D /* GameLayer.m */; };
-		23B4529713382BB70096FD8D /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B4529613382BB70096FD8D /* Player.m */; };
 		23E31E51133831A400D4C438 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 23E31E47133831A400D4C438 /* Default.png */; };
 		23E31E52133831A400D4C438 /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = 23E31E48133831A400D4C438 /* fps_images.png */; };
 		23E31E53133831A400D4C438 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 23E31E49133831A400D4C438 /* Icon-72.png */; };
@@ -123,11 +124,11 @@
 		23E31E57133831A400D4C438 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 23E31E4D133831A400D4C438 /* Icon.png */; };
 		23E31E58133831A400D4C438 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23E31E4E133831A400D4C438 /* Icon@2x.png */; };
 		23E31E5A133831A400D4C438 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 23E31E50133831A400D4C438 /* iTunesArtwork */; };
-		23E31E601338337100D4C438 /* player-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 23E31E5E1338337100D4C438 /* player-hd.png */; };
-		23E31E611338337100D4C438 /* player.png in Resources */ = {isa = PBXBuildFile; fileRef = 23E31E5F1338337100D4C438 /* player.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		23335ED21339682E00450E90 /* bg_subway-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_subway-hd.png"; sourceTree = "<group>"; };
+		23335ED31339682E00450E90 /* bg_subway.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_subway.png; sourceTree = "<group>"; };
 		23B4512413381ED60096FD8D /* SubwaySlide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SubwaySlide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23B4512813381ED60096FD8D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		23B4512A13381ED60096FD8D /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -349,8 +350,6 @@
 		23B4528813381ED80096FD8D /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
 		23B452911338260B0096FD8D /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameLayer.h; sourceTree = "<group>"; };
 		23B452921338260B0096FD8D /* GameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameLayer.m; sourceTree = "<group>"; };
-		23B4529513382BB70096FD8D /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
-		23B4529613382BB70096FD8D /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		23E31E47133831A400D4C438 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		23E31E48133831A400D4C438 /* fps_images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fps_images.png; sourceTree = "<group>"; };
 		23E31E49133831A400D4C438 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
@@ -361,8 +360,6 @@
 		23E31E4E133831A400D4C438 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		23E31E4F133831A400D4C438 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		23E31E50133831A400D4C438 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
-		23E31E5E1338337100D4C438 /* player-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "player-hd.png"; sourceTree = "<group>"; };
-		23E31E5F1338337100D4C438 /* player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -384,6 +381,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		23335ED01339681200450E90 /* Backgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				23335ED21339682E00450E90 /* bg_subway-hd.png */,
+				23335ED31339682E00450E90 /* bg_subway.png */,
+			);
+			path = Backgrounds;
+			sourceTree = "<group>";
+		};
 		23B4511913381ED60096FD8D = {
 			isa = PBXGroup;
 			children = (
@@ -722,8 +728,6 @@
 		23B4529413382B4E0096FD8D /* Game Objects */ = {
 			isa = PBXGroup;
 			children = (
-				23B4529513382BB70096FD8D /* Player.h */,
-				23B4529613382BB70096FD8D /* Player.m */,
 			);
 			path = "Game Objects";
 			sourceTree = "<group>";
@@ -731,6 +735,7 @@
 		23E31E5B133831E600D4C438 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				23335ED01339681200450E90 /* Backgrounds */,
 				23E31E5D1338328F00D4C438 /* Game Objects */,
 				23E31E5C1338324000D4C438 /* Icons */,
 				23E31E47133831A400D4C438 /* Default.png */,
@@ -755,8 +760,6 @@
 		23E31E5D1338328F00D4C438 /* Game Objects */ = {
 			isa = PBXGroup;
 			children = (
-				23E31E5E1338337100D4C438 /* player-hd.png */,
-				23E31E5F1338337100D4C438 /* player.png */,
 			);
 			path = "Game Objects";
 			sourceTree = "<group>";
@@ -817,8 +820,8 @@
 				23E31E57133831A400D4C438 /* Icon.png in Resources */,
 				23E31E58133831A400D4C438 /* Icon@2x.png in Resources */,
 				23E31E5A133831A400D4C438 /* iTunesArtwork in Resources */,
-				23E31E601338337100D4C438 /* player-hd.png in Resources */,
-				23E31E611338337100D4C438 /* player.png in Resources */,
+				23335ED41339682E00450E90 /* bg_subway-hd.png in Resources */,
+				23335ED51339682E00450E90 /* bg_subway.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -927,7 +930,6 @@
 				23B4528113381ED80096FD8D /* AppDelegate.m in Sources */,
 				23B4528413381ED80096FD8D /* RootViewController.m in Sources */,
 				23B452931338260B0096FD8D /* GameLayer.m in Sources */,
-				23B4529713382BB70096FD8D /* Player.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

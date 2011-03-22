@@ -1,11 +1,9 @@
 #import "GameLayer.h"
-#import "Player.h"
 
 @interface GameLayer ()
 
+@property (nonatomic, assign) float accelerometerVelocity;
 @property (nonatomic, assign) BOOL canChangeSubwayVelocity;
-@property (nonatomic, retain) Player* player;
-@property (nonatomic, assign) float playerRotationVelocity;
 @property (nonatomic, assign) float subwayVelocity;
 @property (nonatomic, assign) CCLabelTTF* subwayVelocityLabel;
 
@@ -18,9 +16,8 @@
 
 @implementation GameLayer
 
+@synthesize accelerometerVelocity = _accelerometerVelocity;
 @synthesize canChangeSubwayVelocity = _canChangeSubwayVelocity;
-@synthesize player = _player;
-@synthesize playerRotationVelocity = _playerRotationVelocity;
 @synthesize subwayVelocity = _subwayVelocity;
 @synthesize subwayVelocityLabel = _subwayVelocityLabel;
 
@@ -43,10 +40,10 @@
     self.isAccelerometerEnabled = YES;
     self.canChangeSubwayVelocity = YES;
 
-    self.player = [[[Player alloc] init] autorelease];
-    self.player.sprite.anchorPoint = ccp(0.5, 0);
-    self.player.sprite.position = ccp(winSize.width * 0.25f, 0);
-    [self addChild:self.player.sprite];
+    // Background
+    CCSprite* background = [CCSprite spriteWithFile:@"bg_subway.png"];
+    background.position = ccp(winSize.width * 0.5, winSize.height * 0.5);
+    [self addChild:background z:-1];
 
     self.subwayVelocityLabel = [CCLabelTTF labelWithString:@"Go!" fontName:@"Helvetica" fontSize:24];
     self.subwayVelocityLabel.position = ccp(winSize.width * 0.5,
@@ -60,17 +57,11 @@
   return self;
 }
 
-- (void)dealloc {
-  [_player release];
-
-  [super dealloc];
-}
-
 #pragma mark -
 #pragma mark Scheduled Methods
 
 - (void)considerChangingSubwayVelocity:(ccTime)dt {
-  if (self.canChangeSubwayVelocity && CCRANDOM_0_1() > 0.25) {
+  if (self.canChangeSubwayVelocity && CCRANDOM_0_1() < 0.25) {
     self.canChangeSubwayVelocity = NO;
     float newVelocity = MAX(-100, MIN(100, CCRANDOM_MINUS1_1() * 2.5));
 
@@ -87,19 +78,19 @@
 }
 
 - (void)update:(ccTime)dt {
-  float newRotation = self.player.sprite.rotation - (self.playerRotationVelocity + self.subwayVelocity);
+  float newRotation = self.rotation - (self.accelerometerVelocity + self.subwayVelocity);
 
   if (newRotation > 90.0f) {
     newRotation = 90.0f;
-    self.playerRotationVelocity = 0;
+    self.accelerometerVelocity = 0;
     self.subwayVelocity = 0;
   } else if (newRotation < -90.0f) {
     newRotation = -90.0f;
-    self.playerRotationVelocity = 0;
+    self.accelerometerVelocity = 0;
     self.subwayVelocity = 0;
   }
 
-  self.player.sprite.rotation = newRotation;
+  self.rotation = newRotation;
 }
 
 #pragma mark -
@@ -116,7 +107,7 @@
   float maxVelocity = 100;
   
   // Adjust velocity based on current accelerometer acceleration
-  float newVelocity = (self.playerRotationVelocity * deceleration) + (acceleration.y * sensitivity);
+  float newVelocity = (self.accelerometerVelocity * deceleration) + (acceleration.y * sensitivity);
   
   // We must limit the max velocity of the player sprite in both directions
   if (newVelocity > maxVelocity) {
@@ -125,7 +116,7 @@
     newVelocity = -maxVelocity;
   }
   
-  self.playerRotationVelocity = newVelocity;
+  self.accelerometerVelocity = newVelocity;
 }
      
 #pragma mark -
@@ -136,15 +127,15 @@
 }
 
 - (void)changeSubwayVelocityTo:(NSNumber*)newVelocity {
-  self.subwayVelocity = [newVelocity floatValue];
+  float newVelocityFloat = [newVelocity floatValue];
 
-  if ([newVelocity floatValue] > self.subwayVelocity) {
+  if (newVelocityFloat > self.subwayVelocity) {
     [self.subwayVelocityLabel setString:@"Speeding up!"];
   } else {
     [self.subwayVelocityLabel setString:@"Slowing down!"];
   }
 
-  self.subwayVelocity = [newVelocity floatValue];
+  self.subwayVelocity = newVelocityFloat;
 
   [self performSelector:@selector(allowChangingSubwayVelocity)
              withObject:nil
