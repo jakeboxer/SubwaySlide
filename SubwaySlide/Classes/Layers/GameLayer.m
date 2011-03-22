@@ -74,7 +74,7 @@
     self.canChangeSubwayVelocity = NO;
     float newVelocity = MAX(-100, MIN(100, CCRANDOM_MINUS1_1() * 2.5));
 
-    if (newVelocity > 0) {
+    if (newVelocity > self.subwayVelocity) {
       [self.subwayVelocityLabel setString:@"About to speed up!"];
     } else {
       [self.subwayVelocityLabel setString:@"About to slow down!"];
@@ -138,15 +138,30 @@
 - (void)changeSubwayVelocityTo:(NSNumber*)newVelocity {
   self.subwayVelocity = [newVelocity floatValue];
 
-  if (self.subwayVelocity > 0) {
+  if ([newVelocity floatValue] > self.subwayVelocity) {
     [self.subwayVelocityLabel setString:@"Speeding up!"];
   } else {
     [self.subwayVelocityLabel setString:@"Slowing down!"];
   }
 
+  self.subwayVelocity = [newVelocity floatValue];
+
   [self performSelector:@selector(allowChangingSubwayVelocity)
              withObject:nil
              afterDelay:2];
+}
+
+#pragma mark -
+#pragma mark CCLayer Methods
+
+- (void)onEnter {
+  [super onEnter];
+  [UIApplication sharedApplication].idleTimerDisabled = YES;
+}
+
+- (void)onExit {
+  [super onExit];
+  [UIApplication sharedApplication].idleTimerDisabled = NO;
 }
 
 @end
