@@ -1,11 +1,3 @@
-//
-//  GameConfig.h
-//  SubwaySlide
-//
-//  Created by Jacob Boxer on 3/21/11.
-//  Copyright __MyCompanyName__ 2011. All rights reserved.
-//
-
 #ifndef __GAME_CONFIG_H
 #define __GAME_CONFIG_H
 
