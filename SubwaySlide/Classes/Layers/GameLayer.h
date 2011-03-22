@@ -5,6 +5,7 @@
 @interface GameLayer : CCLayer {
 @private
   Player* _player;
+  float _playerRotationVelocity;
 }
 
 + (CCScene*)scene;
