@@ -3,9 +3,11 @@
 @interface GameLayer : CCLayer {
 @private
   float _accelerometerVelocity;
+  float _actualSubwayVelocity;
   BOOL _canChangeSubwayVelocity;
-  float _subwayVelocity;
+  float _modifyingSubwayVelocity;
   CCLabelTTF* _subwayVelocityLabel;
+  CCSprite* _subwayWindow;
 }
 
 + (CCScene*)scene;

@@ -4,9 +4,11 @@
 @interface GameLayer ()
 
 @property (nonatomic, assign) float accelerometerVelocity;
+@property (nonatomic, assign) float actualSubwayVelocity;
 @property (nonatomic, assign) BOOL canChangeSubwayVelocity;
-@property (nonatomic, assign) float subwayVelocity;
+@property (nonatomic, assign) float modifyingSubwayVelocity;
 @property (nonatomic, assign) CCLabelTTF* subwayVelocityLabel;
+@property (nonatomic, assign) CCSprite* subwayWindow;
 
 - (void)allowChangingSubwayVelocity;
 - (void)changeSubwayVelocityTo:(NSNumber*)newVelocity;
@@ -18,9 +20,11 @@
 @implementation GameLayer
 
 @synthesize accelerometerVelocity = _accelerometerVelocity;
+@synthesize actualSubwayVelocity = _actualSubwayVelocity;
 @synthesize canChangeSubwayVelocity = _canChangeSubwayVelocity;
-@synthesize subwayVelocity = _subwayVelocity;
+@synthesize modifyingSubwayVelocity = _modifyingSubwayVelocity;
 @synthesize subwayVelocityLabel = _subwayVelocityLabel;
+@synthesize subwayWindow = _subwayWindow;
 
 #pragma mark -
 #pragma mark Creation/Removal Methods
@@ -46,6 +50,12 @@
     background.position = ccp(winSize.width * 0.5, winSize.height * 0.5);
     [self addChild:background z:-1];
 
+    // Window
+    self.subwayWindow = [CCSprite spriteWithFile:@"bg_window.png" rect:CGRectMake(0, 0, 500, 193)];
+    self.subwayWindow.position = ccp(25 + self.subwayWindow.contentSize.width * 0.5,
+                                     242 + self.subwayWindow.contentSize.height * 0.5);
+    [self addChild:self.subwayWindow];
+
     self.subwayVelocityLabel = [CCLabelTTF labelWithString:@"Go!" fontName:@"Helvetica" fontSize:24];
     self.subwayVelocityLabel.position = ccp(winSize.width * 0.5,
                                             winSize.height - (self.subwayVelocityLabel.contentSize.height / 2));
@@ -63,23 +73,59 @@
 
 - (void)considerChangingSubwayVelocity:(ccTime)dt {
   if (self.canChangeSubwayVelocity && CCRANDOM_0_1() < 0.25) {
-    self.canChangeSubwayVelocity = NO;
     float newVelocity = MAX(-100, MIN(100, CCRANDOM_MINUS1_1() * 2.5));
 
-    if (newVelocity > self.subwayVelocity) {
-      [self.subwayVelocityLabel setString:@"About to speed up!"];
-    } else {
-      [self.subwayVelocityLabel setString:@"About to slow down!"];
-    }
+    if (newVelocity != 0.0f) {
+      self.canChangeSubwayVelocity = NO;
 
-    [self performSelector:@selector(changeSubwayVelocityTo:)
-               withObject:[NSNumber numberWithFloat:newVelocity]
-               afterDelay:4];
+      if (newVelocity > self.actualSubwayVelocity) {
+        [self.subwayVelocityLabel setString:@"About to speed up!"];
+      } else {
+        [self.subwayVelocityLabel setString:@"About to slow down!"];
+      }
+      
+      [self performSelector:@selector(changeSubwayVelocityTo:)
+                 withObject:[NSNumber numberWithFloat:newVelocity]
+                 afterDelay:4];
+    }
   }
 }
 
 - (void)update:(ccTime)dt {
-  float newRotation = self.rotation - (self.accelerometerVelocity + self.subwayVelocity);
+  CGRect newTextureRect = self.subwayWindow.textureRect;
+
+  if (newTextureRect.origin.x > 640) {
+    newTextureRect.origin.x = 0;
+  } else {
+    newTextureRect.origin.x += (self.actualSubwayVelocity + 2.5) * dt * 60;
+  }
+
+  if (self.modifyingSubwayVelocity != 0.0f) {
+    float newModifyingSubwayVelocity = self.modifyingSubwayVelocity;
+
+    // If the subway is adding velocity, decrease it.
+    if (newModifyingSubwayVelocity > 0.0f) {
+      newModifyingSubwayVelocity -= dt;
+    } else {
+      newModifyingSubwayVelocity += dt;
+    }
+
+    // If the subway velocity changed signs, set it to 0 and allow changes in
+    // 2 seconds
+    if ((self.modifyingSubwayVelocity > 0.0f && newModifyingSubwayVelocity <= 0.0f) ||
+        (self.modifyingSubwayVelocity < 0.0f && newModifyingSubwayVelocity >= 0.0f)){
+      newModifyingSubwayVelocity = 0;
+      [self performSelector:@selector(allowChangingSubwayVelocity)
+                 withObject:nil
+                 afterDelay:2];
+    }
+
+    self.modifyingSubwayVelocity = newModifyingSubwayVelocity;
+  }
+
+  self.subwayWindow.textureRect = newTextureRect;
+
+  float newRotation = self.rotation - (self.accelerometerVelocity + self.modifyingSubwayVelocity);
 
   if (fabsf(newRotation) > 90.0f) {
     [[CCDirector sharedDirector] replaceScene:[LossLayer scene]];
@@ -122,19 +168,9 @@
 }
 
 - (void)changeSubwayVelocityTo:(NSNumber*)newVelocity {
-  float newVelocityFloat = [newVelocity floatValue];
-
-  if (newVelocityFloat > self.subwayVelocity) {
-    [self.subwayVelocityLabel setString:@"Speeding up!"];
-  } else {
-    [self.subwayVelocityLabel setString:@"Slowing down!"];
-  }
-
-  self.subwayVelocity = newVelocityFloat;
-
-  [self performSelector:@selector(allowChangingSubwayVelocity)
-             withObject:nil
-             afterDelay:2];
+  [self.subwayVelocityLabel setString:@""];
+  self.actualSubwayVelocity = [newVelocity floatValue];
+  self.modifyingSubwayVelocity = self.actualSubwayVelocity;
 }
 
 #pragma mark -

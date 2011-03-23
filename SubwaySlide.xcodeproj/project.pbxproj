@@ -12,6 +12,8 @@
 		23335EF01339747200450E90 /* bg_loss-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 23335EEE1339747200450E90 /* bg_loss-hd.png */; };
 		23335EF11339747200450E90 /* bg_loss.png in Resources */ = {isa = PBXBuildFile; fileRef = 23335EEF1339747200450E90 /* bg_loss.png */; };
 		23335EF41339748400450E90 /* LossLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 23335EF31339748400450E90 /* LossLayer.m */; };
+		23335EF713397E7A00450E90 /* bg_window-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 23335EF513397E7A00450E90 /* bg_window-hd.png */; };
+		23335EF813397E7A00450E90 /* bg_window.png in Resources */ = {isa = PBXBuildFile; fileRef = 23335EF613397E7A00450E90 /* bg_window.png */; };
 		23B4512913381ED60096FD8D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23B4512813381ED60096FD8D /* QuartzCore.framework */; };
 		23B4512B13381ED60096FD8D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23B4512A13381ED60096FD8D /* OpenGLES.framework */; };
 		23B4512D13381ED60096FD8D /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23B4512C13381ED60096FD8D /* OpenAL.framework */; };
@@ -136,6 +138,8 @@
 		23335EEF1339747200450E90 /* bg_loss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_loss.png; sourceTree = "<group>"; };
 		23335EF21339748400450E90 /* LossLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LossLayer.h; sourceTree = "<group>"; };
 		23335EF31339748400450E90 /* LossLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LossLayer.m; sourceTree = "<group>"; };
+		23335EF513397E7A00450E90 /* bg_window-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_window-hd.png"; sourceTree = "<group>"; };
+		23335EF613397E7A00450E90 /* bg_window.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_window.png; sourceTree = "<group>"; };
 		23B4512413381ED60096FD8D /* SubwaySlide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SubwaySlide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23B4512813381ED60096FD8D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		23B4512A13381ED60096FD8D /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -395,6 +399,8 @@
 				23335EEF1339747200450E90 /* bg_loss.png */,
 				23335ED21339682E00450E90 /* bg_subway-hd.png */,
 				23335ED31339682E00450E90 /* bg_subway.png */,
+				23335EF513397E7A00450E90 /* bg_window-hd.png */,
+				23335EF613397E7A00450E90 /* bg_window.png */,
 			);
 			path = Backgrounds;
 			sourceTree = "<group>";
@@ -835,6 +841,8 @@
 				23335ED51339682E00450E90 /* bg_subway.png in Resources */,
 				23335EF01339747200450E90 /* bg_loss-hd.png in Resources */,
 				23335EF11339747200450E90 /* bg_loss.png in Resources */,
+				23335EF713397E7A00450E90 /* bg_window-hd.png in Resources */,
+				23335EF813397E7A00450E90 /* bg_window.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
