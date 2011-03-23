@@ -1,4 +1,5 @@
 #import "GameLayer.h"
+#import "LossLayer.h"
 
 @interface GameLayer ()
 
@@ -80,17 +81,11 @@
 - (void)update:(ccTime)dt {
   float newRotation = self.rotation - (self.accelerometerVelocity + self.subwayVelocity);
 
-  if (newRotation > 90.0f) {
-    newRotation = 90.0f;
-    self.accelerometerVelocity = 0;
-    self.subwayVelocity = 0;
-  } else if (newRotation < -90.0f) {
-    newRotation = -90.0f;
-    self.accelerometerVelocity = 0;
-    self.subwayVelocity = 0;
+  if (fabsf(newRotation) > 90.0f) {
+    [[CCDirector sharedDirector] replaceScene:[LossLayer scene]];
+  } else {
+    self.rotation = newRotation;
   }
-
-  self.rotation = newRotation;
 }
 
 #pragma mark -

@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		23335ED41339682E00450E90 /* bg_subway-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 23335ED21339682E00450E90 /* bg_subway-hd.png */; };
 		23335ED51339682E00450E90 /* bg_subway.png in Resources */ = {isa = PBXBuildFile; fileRef = 23335ED31339682E00450E90 /* bg_subway.png */; };
+		23335EF01339747200450E90 /* bg_loss-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 23335EEE1339747200450E90 /* bg_loss-hd.png */; };
+		23335EF11339747200450E90 /* bg_loss.png in Resources */ = {isa = PBXBuildFile; fileRef = 23335EEF1339747200450E90 /* bg_loss.png */; };
+		23335EF41339748400450E90 /* LossLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 23335EF31339748400450E90 /* LossLayer.m */; };
 		23B4512913381ED60096FD8D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23B4512813381ED60096FD8D /* QuartzCore.framework */; };
 		23B4512B13381ED60096FD8D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23B4512A13381ED60096FD8D /* OpenGLES.framework */; };
 		23B4512D13381ED60096FD8D /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23B4512C13381ED60096FD8D /* OpenAL.framework */; };
@@ -129,6 +132,10 @@
 /* Begin PBXFileReference section */
 		23335ED21339682E00450E90 /* bg_subway-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_subway-hd.png"; sourceTree = "<group>"; };
 		23335ED31339682E00450E90 /* bg_subway.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_subway.png; sourceTree = "<group>"; };
+		23335EEE1339747200450E90 /* bg_loss-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_loss-hd.png"; sourceTree = "<group>"; };
+		23335EEF1339747200450E90 /* bg_loss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_loss.png; sourceTree = "<group>"; };
+		23335EF21339748400450E90 /* LossLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LossLayer.h; sourceTree = "<group>"; };
+		23335EF31339748400450E90 /* LossLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LossLayer.m; sourceTree = "<group>"; };
 		23B4512413381ED60096FD8D /* SubwaySlide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SubwaySlide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23B4512813381ED60096FD8D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		23B4512A13381ED60096FD8D /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -384,6 +391,8 @@
 		23335ED01339681200450E90 /* Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				23335EEE1339747200450E90 /* bg_loss-hd.png */,
+				23335EEF1339747200450E90 /* bg_loss.png */,
 				23335ED21339682E00450E90 /* bg_subway-hd.png */,
 				23335ED31339682E00450E90 /* bg_subway.png */,
 			);
@@ -721,6 +730,8 @@
 			children = (
 				23B452911338260B0096FD8D /* GameLayer.h */,
 				23B452921338260B0096FD8D /* GameLayer.m */,
+				23335EF21339748400450E90 /* LossLayer.h */,
+				23335EF31339748400450E90 /* LossLayer.m */,
 			);
 			path = Layers;
 			sourceTree = "<group>";
@@ -822,6 +833,8 @@
 				23E31E5A133831A400D4C438 /* iTunesArtwork in Resources */,
 				23335ED41339682E00450E90 /* bg_subway-hd.png in Resources */,
 				23335ED51339682E00450E90 /* bg_subway.png in Resources */,
+				23335EF01339747200450E90 /* bg_loss-hd.png in Resources */,
+				23335EF11339747200450E90 /* bg_loss.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -930,6 +943,7 @@
 				23B4528113381ED80096FD8D /* AppDelegate.m in Sources */,
 				23B4528413381ED80096FD8D /* RootViewController.m in Sources */,
 				23B452931338260B0096FD8D /* GameLayer.m in Sources */,
+				23335EF41339748400450E90 /* LossLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

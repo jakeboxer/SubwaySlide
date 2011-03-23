@@ -1,7 +1,5 @@
 #import "cocos2d.h"
 
-@class Player;
-
 @interface GameLayer : CCLayer {
 @private
   float _accelerometerVelocity;
