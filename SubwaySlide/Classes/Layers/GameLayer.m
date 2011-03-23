@@ -1,9 +1,12 @@
 #import "GameLayer.h"
 #import "LossLayer.h"
 
+static float const kEpicSaveThreshold = 70.0f;
+
 @interface GameLayer ()
 
 @property (nonatomic, assign) float accelerometerVelocity;
+@property (nonatomic, assign) CCLabelTTF* achievementLabel;
 @property (nonatomic, assign) float actualSubwayVelocity;
 @property (nonatomic, assign) BOOL canChangeSubwayVelocity;
 @property (nonatomic, assign) float elapsedTime;
@@ -23,6 +26,7 @@
 @implementation GameLayer
 
 @synthesize accelerometerVelocity = _accelerometerVelocity;
+@synthesize achievementLabel = _achievementLabel;
 @synthesize actualSubwayVelocity = _actualSubwayVelocity;
 @synthesize canChangeSubwayVelocity = _canChangeSubwayVelocity;
 @synthesize elapsedTime = _elapsedTime;
@@ -60,6 +64,15 @@
     self.subwayWindow.position = ccp(25 + self.subwayWindow.contentSize.width * 0.5,
                                      242 + self.subwayWindow.contentSize.height * 0.5);
     [self addChild:self.subwayWindow];
+
+    // Achievement label
+    self.achievementLabel = [CCLabelTTF labelWithString:@""
+                                               fontName:@"Helvetica-Bold"
+                                               fontSize:36];
+    self.achievementLabel.position = ccp(winSize.width * 0.5, winSize.height * 0.5);
+    self.achievementLabel.color = ccc3(0, 255, 0);
+    self.achievementLabel.opacity = 0;
+    [self addChild:self.achievementLabel];
     
     // Score label
     self.scoreLabel = [CCLabelTTF labelWithString:[self currentScoreString]
@@ -129,6 +142,16 @@
     if (newScore != self.score) {
       self.score = newScore;
       [self.scoreLabel setString:[self currentScoreString]];
+    }
+
+    if (fabsf(self.rotation) > kEpicSaveThreshold &&
+        fabsf(newRotation) < kEpicSaveThreshold &&
+        [self.achievementLabel numberOfRunningActions] < 1) {
+      [self.achievementLabel setString:@"Epic save!!!"];
+      [self.achievementLabel runAction:[CCSequence actions:
+                                        [CCFadeIn actionWithDuration:0.25],
+                                        [CCDelayTime actionWithDuration:2.5],
+                                        [CCFadeOut actionWithDuration:0.25], nil]];
     }
 
     self.rotation = newRotation;

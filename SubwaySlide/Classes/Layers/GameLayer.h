@@ -3,6 +3,7 @@
 @interface GameLayer : CCLayer {
 @private
   float _accelerometerVelocity;
+  CCLabelTTF* _achievementLabel;
   float _actualSubwayVelocity;
   BOOL _canChangeSubwayVelocity;
   ccTime _elapsedTime;
