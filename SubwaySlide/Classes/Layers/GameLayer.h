@@ -5,7 +5,6 @@
   float _accelerometerVelocity;
   float _actualSubwayVelocity;
   BOOL _canChangeSubwayVelocity;
-  float _modifyingSubwayVelocity;
   CCLabelTTF* _subwayVelocityLabel;
   CCSprite* _subwayWindow;
 }
