@@ -6,12 +6,16 @@
 @property (nonatomic, assign) float accelerometerVelocity;
 @property (nonatomic, assign) float actualSubwayVelocity;
 @property (nonatomic, assign) BOOL canChangeSubwayVelocity;
+@property (nonatomic, assign) float elapsedTime;
+@property (nonatomic, assign) int score;
+@property (nonatomic, assign) CCLabelTTF* scoreLabel;
 @property (nonatomic, assign) CCLabelTTF* subwayVelocityLabel;
 @property (nonatomic, assign) CCSprite* subwayWindow;
 
 - (void)allowChangingSubwayVelocity;
 - (void)changeSubwayVelocityTo:(NSNumber*)newVelocity;
 - (void)considerChangingSubwayVelocity:(ccTime)dt;
+- (NSString*)currentScoreString;
 - (void)update:(ccTime)dt;
 
 @end
@@ -21,6 +25,9 @@
 @synthesize accelerometerVelocity = _accelerometerVelocity;
 @synthesize actualSubwayVelocity = _actualSubwayVelocity;
 @synthesize canChangeSubwayVelocity = _canChangeSubwayVelocity;
+@synthesize elapsedTime = _elapsedTime;
+@synthesize score = _score;
+@synthesize scoreLabel = _scoreLabel;
 @synthesize subwayVelocityLabel = _subwayVelocityLabel;
 @synthesize subwayWindow = _subwayWindow;
 
@@ -53,10 +60,21 @@
     self.subwayWindow.position = ccp(25 + self.subwayWindow.contentSize.width * 0.5,
                                      242 + self.subwayWindow.contentSize.height * 0.5);
     [self addChild:self.subwayWindow];
+    
+    // Score label
+    self.scoreLabel = [CCLabelTTF labelWithString:[self currentScoreString]
+                                         fontName:@"Helvetica"
+                                         fontSize:20];
+    self.scoreLabel.position = ccp(winSize.width - 20, 20);
+    self.scoreLabel.anchorPoint = ccp(1, 0.5);
+    [self addChild:self.scoreLabel];
 
-    self.subwayVelocityLabel = [CCLabelTTF labelWithString:@"" fontName:@"Helvetica" fontSize:24];
+    // Subway velocity change label
+    self.subwayVelocityLabel = [CCLabelTTF labelWithString:@""
+                                                  fontName:@"Helvetica"
+                                                  fontSize:24];
     self.subwayVelocityLabel.position = ccp(winSize.width * 0.5,
-                                            winSize.height - (self.subwayVelocityLabel.contentSize.height / 2));
+                                            winSize.height - (10 + self.subwayVelocityLabel.contentSize.height / 2));
     [self addChild:self.subwayVelocityLabel];
 
     [self scheduleUpdate];
@@ -105,6 +123,14 @@
   if (fabsf(newRotation) > 90.0f) {
     [[CCDirector sharedDirector] replaceScene:[LossLayer scene]];
   } else {
+    self.elapsedTime += dt;
+    int newScore = (int)(self.elapsedTime * 15);
+
+    if (newScore != self.score) {
+      self.score = newScore;
+      [self.scoreLabel setString:[self currentScoreString]];
+    }
+
     self.rotation = newRotation;
   }
 }
@@ -149,6 +175,10 @@
   [self performSelector:@selector(allowChangingSubwayVelocity)
              withObject:nil
              afterDelay:2];
+}
+
+- (NSString*)currentScoreString {
+  return [NSString stringWithFormat:@"Score: %d", self.score];
 }
 
 #pragma mark -
